@@ -56,7 +56,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="">Navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -80,9 +80,17 @@
         {% for property in properties %}
             <div class="col-md-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="{{ property.image.url }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                       <a href="/details/{{ property.id }}"><h5 class="card-title">{{property.title}}</h5></a>
+                    {%if property.image%}
+                       <img src="{{property.image.url}}" alt="" style = "width: 200px;">
+                    {%endif%}
+                        <h2>
+                            {%comment%}
+                                <a href="/details/{{property.id}}">{{property.title}}</a>
+                            {%endcomment%}
+                            <a href="{%url 'details' property.id %}">{{property.title}}</a>
+                            
+                        </h2>
                         <p class="card-text">{{property.description}}</p>
                         <a href="#" class="btn btn-primary">Book Now</a>
                     </div>

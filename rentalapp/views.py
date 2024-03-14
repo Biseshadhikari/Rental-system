@@ -34,9 +34,7 @@ def delete(request,id):
     property.delete()
     return redirect('home')
 
-def details(request,id):
-    property = Property.objects.get(id=id)
-    return render(request,'details.html',{'property':property})
+
 
 def register(request):
     if request.method == 'POST':
@@ -59,3 +57,12 @@ def register(request):
     return render(request,'register.html',)
 
  
+def detailView(request,id):
+    try:
+        property = Property.objects.get(id = id)
+        context = {
+            'property':property
+        }
+        return render(request,'details.html',context)
+    except:
+        return redirect('/home')
